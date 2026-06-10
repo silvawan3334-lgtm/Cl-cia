@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Clécia, com amor</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --rose: #e0457b;
+  --rose-light: #ff8fb1;
+  --rose-deep: #b3215f;
+  --gold: #f3c6d4;
+  --bg-dark: #2a0e1c;
+  --bg-mid: #471528;
+  --text-soft: #f6dbe4;
+  --page-bg: #fff7f9;
+  --page-text: #6b2c46;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Lato', sans-serif;
+  background: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-mid) 50%, var(--bg-dark) 100%);
+  color: var(--text-soft);
+  min-height: 100vh;
+  position:relative;
+}
+
+/* floating decorations */
+.floaty {
+  position:fixed;
+  pointer-events:none;
+  font-size: 1.4rem;
+  opacity:0.18;
+  color: var(--rose-light);
+  animation: floatUp 14s linear infinite;
+  z-index:0;
+}
+@keyframes floatUp {
+  0% { transform: translateY(110vh) rotate(0deg); opacity:0; }
+  10% { opacity:0.25; }
+  90% { opacity:0.25; }
+  100% { transform: translateY(-10vh) rotate(360deg); opacity:0; }
+}
+
+/* ===== COVER (slide 0) ===== */
+.cover {
+  height: 100vh;
+  width:100vw;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding: 40px 20px;
+  position:relative;
+  background: radial-gradient(ellipse at center, #5c1d36 0%, #2a0e1c 75%);
+  overflow:hidden;
+  flex: 0 0 100%;
+}
+.cover::before {
+  content:'';
+  position:absolute; inset:0;
+  background-image: radial-gradient(circle, rgba(255,143,177,0.10) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity:0.6;
+}
+.cover-deco {
+  position:absolute;
+  font-size: 2.2rem;
+  opacity:0.25;
+  color: var(--rose-light);
+}
+.cover-frame {
+  position: relative;
+  z-index:1;
+  border: 1px solid var(--rose-light);
+  padding: 50px 35px;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 4px;
+  background: rgba(0,0,0,0.18);
+}
+.cover-frame::before, .cover-frame::after {
+  content:'';
+  position:absolute;
+  width: 26px; height: 26px;
+  border: 1px solid var(--rose-light);
+}
+.cover-frame::before { top:-8px; left:-8px; border-right:none; border-bottom:none; }
+.cover-frame::after { bottom:-8px; right:-8px; border-left:none; border-top:none; }
+
+.heart-icon {
+  font-size: 2.6rem;
+  color: var(--rose);
+  margin-bottom: 1.2rem;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { transform: scale(1); opacity:1; }
+  50% { transform: scale(1.12); opacity:0.75; }
+}
+.cover h1 {
+  font-family:'Playfair Display', serif;
+  font-size: clamp(2.6rem, 9vw, 5rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--rose) 0%, var(--rose-light) 50%, var(--rose) 100%);
+  -webkit-background-clip: text; background-clip:text; -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+.cover .subtitle {
+  font-size: 0.95rem;
+  color: var(--gold);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+.cover .message {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.15rem, 3vw, 1.55rem);
+  line-height: 2;
+  color: var(--text-soft);
+  border-top: 1px solid rgba(255,143,177,0.35);
+  border-bottom: 1px solid rgba(255,143,177,0.35);
+  padding: 1.8rem 0;
+  margin-bottom: 2rem;
+}
+.cover .scroll-hint {
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  color: var(--rose-light);
+  text-transform: uppercase;
+  animation: slideHint 2s infinite;
+}
+@keyframes slideHint { 0%,100%{transform:translateX(0); opacity:1;} 50%{transform:translateX(8px); opacity:0.5;} }
+
+/* ===== COUNTER ===== */
+.counter-section {
+  padding: 50px 20px;
+  text-align:center;
+  position:relative; z-index:1;
+}
+.counter-box {
+  display:inline-block;
+  border: 1px solid var(--rose-light);
+  padding: 2rem 3.5rem;
+  border-radius: 6px;
+  background: rgba(255,143,177,0.06);
+  position:relative;
+}
+.counter-box::before, .counter-box::after {
+  content:'\2665';
+  position:absolute; top:-14px;
+  color: var(--rose);
+  font-size:1.4rem;
+  background: var(--bg-dark);
+  padding:0 6px;
+}
+.counter-box::before { left:14px; }
+.counter-box::after { right:14px; }
+.counter-number {
+  font-family:'Playfair Display', serif;
+  font-size: clamp(2.6rem, 9vw, 4.2rem);
+  font-weight:900;
+  color: var(--rose-light);
+  line-height:1;
+}
+.counter-label {
+  margin-top: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--gold);
+}
+
+/* ===== BOOK ===== */
+.book-wrap {
+  max-width: 1150px;
+  margin: 20px auto 80px;
+  padding: 0 20px;
+  position:relative; z-index:1;
+}
+.book {
+  display:flex;
+  background: linear-gradient(135deg, var(--page-bg) 0%, #fdeaf0 100%);
+  border-radius: 6px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,143,177,0.3);
+  overflow:hidden;
+  min-height: 680px;
+  color: var(--page-text);
+}
+
+/* Tabs (book index / spine) */
+.tabs {
+  flex: 0 0 190px;
+  background: linear-gradient(180deg, #5c1d36 0%, #471528 100%);
+  display:flex;
+  flex-direction:column;
+  padding: 28px 0;
+}
+.tabs-title {
+  font-family:'Playfair Display', serif;
+  color: var(--rose-light);
+  text-align:center;
+  font-size: 0.95rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  padding: 0 10px;
+}
+.tab-btn {
+  background: none;
+  border:none;
+  text-align:left;
+  padding: 13px 24px;
+  color: var(--gold);
+  font-family:'Playfair Display', serif;
+  font-size: 0.92rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: all 0.25s ease;
+  display:flex; flex-direction:column; gap:2px;
+}
+.tab-btn span.roman { font-size:0.7rem; opacity:0.65; letter-spacing:2px; text-transform:uppercase;}
+.tab-btn:hover {
+  background: rgba(255,143,177,0.10);
+  color: #fff;
+}
+.tab-btn.active {
+  background: rgba(255,143,177,0.16);
+  color: #fff;
+  border-left: 3px solid var(--rose);
+}
+
+/* Page content */
+.page-area {
+  flex: 1;
+  position:relative;
+  overflow:hidden;
+}
+.page {
+  display:none;
+  padding: 40px 50px;
+  animation: fadeIn 0.5s ease;
+  height:100%;
+  overflow-y:auto;
+}
+.page.active { display:block; }
+@keyframes fadeIn { from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+
+.page-number {
+  font-family:'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight:900;
+  color: rgba(224,69,123,0.07);
+  line-height:1;
+  position:absolute;
+  top: 10px; right: 30px;
+  user-select:none;
+}
+.page-deco {
+  position:absolute;
+  font-size: 1.6rem;
+  color: var(--rose-light);
+  opacity:0.35;
+}
+.page h2 {
+  font-family:'Playfair Display', serif;
+  font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+  color: var(--rose-deep);
+  margin-bottom: 0.3rem;
+  font-weight:700;
+}
+.page .page-date {
+  display:block;
+  color: #d97a9c;
+  font-size: 0.82rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+  font-weight:700;
+}
+.page-photos {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.6rem;
+  border-radius: 10px;
+  overflow:hidden;
+  box-shadow: 0 14px 38px rgba(179,33,95,0.22);
+  border: 3px solid #fff;
+  background-color: #fff;
+}
+.page-photos img {
+  max-width: 100%;
+  max-height: 450px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display:block;
+}
+.page-desc {
+  font-family:'Cormorant Garamond', serif;
+  font-size: 1.18rem;
+  line-height: 1.95;
+  color: #7a3a52;
+  text-align: justify;
+}
+
+/* Cover (intro photo) page */
+.intro-page {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  position:relative;
+  background:#2a0e1c;
+}
+.intro-page img {
+  max-width:100%;
+  max-height: 100%;
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  opacity: 0.97;
+}
+.intro-overlay {
+  position:absolute; inset:0;
+  display:flex; align-items:flex-end;
+  background: linear-gradient(0deg, rgba(42,14,28,0.88) 0%, rgba(42,14,28,0.05) 65%);
+  padding: 40px;
+}
+.intro-overlay p {
+  font-family:'Cormorant Garamond', serif;
+  font-style:italic;
+  font-size: 1.4rem;
+  color: var(--text-soft);
+  line-height:1.8;
+}
+.intro-overlay .deco-hearts { font-size:1.6rem; color:var(--rose-light); margin-bottom:8px; display:block; }
+
+/* Playlist page */
+.playlist-page {
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background: linear-gradient(135deg, #5c1d36 0%, #2a0e1c 100%);
+  padding: 40px;
+}
+.playlist-page h2 {
+  font-family:'Playfair Display', serif;
+  color: var(--rose-light);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  margin-bottom: 0.4rem;
+}
+.playlist-page .page-date {
+  color: var(--gold);
+}
+.playlist-page p.lead {
+  font-family:'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--text-soft);
+  max-width: 480px;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  margin: 0.6rem auto 1.6rem;
+}
+.playlist-page iframe {
+  border-radius: 12px;
+  width: 100%;
+  max-width: 480px;
+  height: 380px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  border: none;
+}
+
+/* Mobile nav arrows */
+.page-nav {
+  display:flex;
+  justify-content:space-between;
+  padding: 0 50px 30px;
+}
+.page-nav button {
+  background: transparent;
+  border: 1px solid var(--rose);
+  color: var(--rose-deep);
+  font-family:'Playfair Display', serif;
+  letter-spacing: 2px;
+  font-size:0.8rem;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor:pointer;
+  text-transform:uppercase;
+  transition: all 0.25s ease;
+}
+.page-nav button:hover { background:var(--rose); color:#fff; }
+.page-nav button:disabled { opacity:0.25; cursor:default; }
+.page-nav button:disabled:hover { background:transparent; color:var(--rose-deep); }
+
+.footer {
+  text-align:center;
+  padding: 40px 20px 60px;
+  color: var(--gold);
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  position:relative; z-index:1;
+}
+.footer .heart { color: var(--rose); }
+
+/* ===== Responsive ===== */
+@media (max-width: 850px) {
+  .book { flex-direction:column; min-height:auto; }
+  .tabs {
+    flex-direction:row;
+    overflow-x:auto;
+    flex: none;
+    padding: 14px 8px;
+    gap: 4px;
+  }
+  .tabs-title { display:none; }
+  .tab-btn {
+    white-space:nowrap;
+    padding: 10px 16px;
+    border-left:none;
+    border-bottom: 3px solid transparent;
+  }
+  .tab-btn.active { border-left:none; border-bottom: 3px solid var(--rose); }
+  .page { padding: 28px 22px; height:auto; }
+  .page-photos { flex-direction: column; }
+  .page-photos img { max-height: 320px; width: auto; }
+  .page-number { font-size: 3.5rem; top:8px; right:18px; }
+  .page-nav { padding: 0 22px 24px; }
+  .intro-page { min-height: 420px; }
+  .playlist-page { padding: 40px 24px; min-height:auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="floaty" style="left:5%; animation-delay:0s;">&#10084;</div>
+<div class="floaty" style="left:18%; animation-delay:3s; font-size:1rem;">&#10084;</div>
+<div class="floaty" style="left:35%; animation-delay:6s;">&#127801;</div>
+<div class="floaty" style="left:55%; animation-delay:2s; font-size:1.1rem;">&#10084;</div>
+<div class="floaty" style="left:72%; animation-delay:8s;">&#127802;</div>
+<div class="floaty" style="left:88%; animation-delay:5s; font-size:1rem;">&#10084;</div>
+<div class="floaty" style="left:48%; animation-delay:10s;">&#127799;</div>
+
+<section class="cover">
+  <div class="cover-deco" style="top:8%; left:8%;">&#127802;</div>
+  <div class="cover-deco" style="bottom:10%; right:10%;">&#127801;</div>
+  <div class="cover-deco" style="top:12%; right:12%; font-size:1.2rem;">&#10084;</div>
+  <div class="cover-frame">
+    <div class="heart-icon">&#10084;</div>
+    <h1>Clécia</h1>
+    <div class="subtitle">Feliz Dia dos Namorados</div>
+    <p class="message">"Toda grande história tem um começo.<br>A nossa começou com oração, respeito, a benção de Deus e a certeza de que alguns encontros não acontecem por acaso.<br><br>Seja bem-vinda ao lugar onde guardamos algumas de nossas memórias mais especiais."</p>
+    <div class="scroll-hint">deslize para o lado &#8594;</div>
+  </div>
+</section>
+
+<section class="counter-section">
+  <div class="counter-box">
+    <div class="counter-number" id="dayCounter">0</div>
+    <div class="counter-label">dias de felicidade juntos</div>
+  </div>
+</section>
+
+<div class="book-wrap">
+  <div class="book" id="bookEl">
+    <div class="tabs" id="tabs">
+      <div class="tabs-title">&#10084; Nosso Livro &#10084;</div>
+      <button class="tab-btn active" data-page="0"><span class="roman">Capa</span>Abertura</button>
+      <button class="tab-btn " data-page="1"><span class="roman">Capítulo I</span>O Começo de Tudo</button>
+      <button class="tab-btn " data-page="2"><span class="roman">Capítulo II</span>Primeiro Milk Shake</button>
+      <button class="tab-btn " data-page="3"><span class="roman">Capítulo III</span>3º ENTEO</button>
+      <button class="tab-btn " data-page="4"><span class="roman">Capítulo IV</span>Passeio por Recife</button>
+      <button class="tab-btn " data-page="5"><span class="roman">Capítulo V</span>Colação de Grau</button>
+      <button class="tab-btn " data-page="6"><span class="roman">Capítulo VI</span>Meu Aniversário</button>
+      <button class="tab-btn " data-page="7"><span class="roman">Capítulo VII</span>Orla de Boa Viagem</button>
+      <button class="tab-btn " data-page="8"><span class="roman">Capítulo VIII</span>Festividade dos Adolescentes</button>
+      <button class="tab-btn " data-page="9"><span class="roman">Trilha Sonora</span>Nossa Playlist</button>
+    </div>
+    <div class="page-area" id="pageArea">
+      <div class="page active" data-page="0" style="padding:0;">
+        <div class="intro-page">
+          <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAYGBgYHBgcICAcKCwoLCg8ODAwODxYQERAREBYiFRkVFRkVIh4kHhweJB42KiYmKjY+NDI0PkxERExfWl98fKcBBgYGBgcGBwgIBwoLCgsKDw4MDA4PFhAREBEQFiIVGRUVGRUiHiQeHB4kHjYqJiYqNj40MjQ+TERETF9aX3x8p//CABEIBfkDgwMBIgACEQEDEQH/xAAwAAADAQEBAQAAAAAAAAAAAAAAAQIDBAUGAQEBAQEBAAAAAAAAAAAAAAAAAQIDBP/aOWs0tBCg===..." alt="Abertura">
+        </div>
+      </div>
+      
+      <div class="page" data-page="9" style="padding:0;">
+        <div class="playlist-page">
+          <h2>Nossa Trilha Sonora</h2>
+          <span class="page-date">Músicas que marcam nossa história</span>
+          <p class="lead">"O amor tem sua própria melodia, e cada canção nos faz lembrar dos momentos lindos que já vivemos e dos que ainda virão."</p>
+          <iframe src="https://open.spotify.com/embed/playlist/SUA_PLAYLIST_AQUI" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// O restante do seu script JavaScript para funcionamento das abas e contador de dias
+</script>
+</body>
+</html>
